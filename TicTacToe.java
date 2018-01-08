@@ -5,12 +5,13 @@ import java.awt.event.*;
 public class TicTacToe extends JFrame implements ActionListener{
     private Container pane;
     private JButton c;
+    private JButton[][] board = new JButton[9][9];
 
     //check winner 1-9,1-9
-    public boolean checkWinner(char[][] checkThis){
-	return false;
+    // public void checkWinner(char[][] checkThis){
+	
 
-    }
+    //}
 
     //set up board
     public TicTacToe(){
@@ -23,7 +24,12 @@ public class TicTacToe extends JFrame implements ActionListener{
 	pane.setLayout(new FlowLayout());
 
 	c = new JButton("Clear All");
+	//for loop to add "-" in each button
+
+	board.addActionListener(this);
 	c.addActionListener(this);
+
+	pane.add(board);
 	pane.add(c);
 
     }
