@@ -5,7 +5,6 @@ import java.awt.event.*;
 public class TicTacToe extends JFrame implements ActionListener{
     private Container pane;
     private JButton c;
-    private JButton[][] board = new JButton[9][9];
 
     //check winner 1-9,1-9
     // public void checkWinner(char[][] checkThis){
@@ -13,29 +12,31 @@ public class TicTacToe extends JFrame implements ActionListener{
 
     //}
 
-    //set up board
+    //GUI
     public TicTacToe(){
 	this.setTitle("Ultimate TicTacToe");
-	this.setSize(700,700);
-	this.setLocation(200,200);
+	this.setSize(900,700);
+	this.setLocation(600,600);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	this.setResizable(false);
+      	this.setBackground(Color.white);
+	//	this.setForeground(Color.white);
 
 	pane = this.getContentPane();
-	pane.setLayout(new FlowLayout());
+	//	pane.setLayout(new FlowLayout());
 
-	c = new JButton("Clear All");
-	//for loop to add "-" in each button
-
-	board.addActionListener(this);
+       	c = new JButton("Clear All");
 	c.addActionListener(this);
-
-	pane.add(board);
-	pane.add(c);
+	//   	pane.add(c);
 
     }
+    public void paint(Graphics g){
+	g.drawLine(0,700/3,900,700/3);
+	g.drawLine(0,600,900,600);
+    }
     
-
-    //gui code 
+    
+    // actions 
     public void actionPerformed(ActionEvent e){
 	String s = e.getActionCommand();
 	System.out.println(s);
