@@ -1,16 +1,31 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.*;
 
 public class TicTacToe extends JFrame implements ActionListener{
     private Container pane;
     private JButton c;
+    char[][] fullboard;
+    private Rectangle currentCell = null;
+
 
     //check winner 1-9,1-9
-    // public void checkWinner(char[][] checkThis){
-	
+    public String checkWinner(char[][] checkThis){
+	for(int w = 0; w < 9; w += 3){
+	}
+	return "p1";
+    }
 
-    //}
+    
+    //clear
+    public void clearBoard(){
+	for (int c = 0; c < 9; c++){
+	    for (int i = 0;i < 9; i++){
+		fullboard[c][i] = 0;
+	    }
+	}
+    }
 
     //GUI
     public TicTacToe(){
@@ -26,18 +41,18 @@ public class TicTacToe extends JFrame implements ActionListener{
 
        	c = new JButton("Clear All");
 	c.addActionListener(this);
-	//     	pane.add(c);
-
+	//   	pane.add(c);
+	
+	//create board
+	fullboard = new char[9][9];
+	for (int c = 0; c < 9; c++){
+	    for (int i = 0;i < 9; i++){
+		fullboard[c][i] = 0;
+	    }
+	}
     }
     public void paint(Graphics g){
-	//large board
-	g.setColor(Color.red);
-	g.drawLine(0,700/3,900,700/3);
-	g.drawLine(0,1400/3,900,1400/3);
-	g.drawLine(300,0,300,900);
-	g.drawLine(600,0,600,900);
 
-	g.setColor(Color.black);
 	//board 1-3
 	g.drawLine(0,700/9,900,700/9);
 	g.drawLine(0,1400/9,900,1400/9);
@@ -52,12 +67,47 @@ public class TicTacToe extends JFrame implements ActionListener{
 	g.drawLine(0,4900/9,900,4900/9);
 	g.drawLine(0,5600/9,900,5600/9);
 	g.drawLine(6300/9,0,6300/9,700);
-	g.drawLine(7200/9,0,7200/9,700);	
-
+	g.drawLine(7200/9,0,7200/9,700);
+	//large board
+	Graphics2D g2 = (Graphics2D) g;
+	g2.setStroke(new BasicStroke(3));
+	g.drawLine(0,700/3,900,700/3);
+	g.drawLine(0,1400/3,900,1400/3);
+	g.drawLine(300,0,300,900);
+	g.drawLine(600,0,600,900);
 	
     }
-    
-    
+    //clickable
+    public void mouseClicked(MouseEvent e){
+	int w = getWidth();
+	int h = getHeight();
+	currentCell = null;
+	for (int col = 0; col < 9 && currentCell == null; col++){
+	    for (int row = 0; row < 9; row++){
+		int x = (w/9) * col;
+		int y = (h/9) * row;
+		Rectangle cell = new Rectangle(x,y,w/9,h/9);
+		if (cell.contains(e.getPoint())){
+		    System.out.println("in");
+		    currentCell = cell;
+		    repaint();
+		    break;
+		}
+	    }
+	}
+    }
+    //paint
+    public void paintComponent(Graphics g){
+	//	super.paintComponent(g);
+	int w = getWidth();
+	int h = getHeight();
+	Graphics2D g2d = (Graphics2D) g;
+
+	if(currentCell != null){
+	    g2d.setColor(Color.black);
+	    g2d.fill(currentCell);
+	}
+    }
     // actions 
     public void actionPerformed(ActionEvent e){
 	String s = e.getActionCommand();
@@ -65,8 +115,9 @@ public class TicTacToe extends JFrame implements ActionListener{
 
     }
     public static void main(String[] args){
-	TicTacToe b = new TicTacToe();
-	b.setVisible(true);
+        TicTacToe b = new TicTacToe();
+       	b.setVisible(true);
+	//	System.out.println(b.check());
     }
 	
 
