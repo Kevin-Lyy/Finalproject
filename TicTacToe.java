@@ -3,21 +3,63 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
 
-public class TicTacToe extends JFrame implements ActionListener{
+public class TicTacToe extends JFrame implements ActionListener, MouseListener{
     private Container pane;
     private JButton c;
     char[][] fullboard;
-    private Rectangle currentCell = null;
 
 
     //check winner 1-9,1-9
-    public String checkWinner(char[][] checkThis){
-	for(int w = 0; w < 9; w += 3){
+    public String checkWinner(int w1,int w2){
+	//check for player 1
+	if(//diagonal
+	   (fullboard[w1][w2] & fullboard[w1+1][w2+1]&
+	    fullboard[w1+2][w2+2])== 1 ||
+	   (fullboard[w1+2][w2]& fullboard[w1+1][w2+1]&
+	    fullboard[w1][w2+2])== 1||
+	   //vertical
+	   (fullboard[w1][w2] & fullboard[w1][w2+1]&
+	    fullboard[w1][w2+2])== 1 ||
+	   (fullboard[w1+1][w2] & fullboard[w1+1][w2+1]&
+	    fullboard[w1+1][w2+2])== 1 ||
+	   (fullboard[w1+2][w2] & fullboard[w1+2][w2+1]&
+	    fullboard[w1+2][w2+2])== 1 ||
+	   //horizontal
+	   (fullboard[w1][w2] & fullboard[w1+1][w2]&
+	    fullboard[w1+2][w2])== 1 ||
+	   (fullboard[w1][w2+1] & fullboard[w1+1][w2+1]&
+	    fullboard[w1+2][w2+1])== 1 ||
+	   (fullboard[w1][w2+2] & fullboard[w1+1][w2+2]&
+	    fullboard[w1+2][w2+2])== 1 ){
+	    return "p1";
 	}
-	return "p1";
+	//check for player 2
+	else
+	if(//diagonal
+	   (fullboard[w1][w2] & fullboard[w1+1][w2+1]&
+	    fullboard[w1+2][w2+2])== 2 ||
+	   (fullboard[w1+2][w2]& fullboard[w1+1][w2+1]&
+	    fullboard[w1][w2+2])== 2||
+	   //vertical
+	   (fullboard[w1][w2] & fullboard[w1][w2+1]&
+	    fullboard[w1][w2+2])== 2 ||
+	   (fullboard[w1+1][w2] & fullboard[w1+1][w2+1]&
+	    fullboard[w1+1][w2+2])== 2 ||
+	   (fullboard[w1+2][w2] & fullboard[w1+2][w2+1]&
+	    fullboard[w1+2][w2+2])== 2 ||
+	   //horizontal
+	   (fullboard[w1][w2] & fullboard[w1+1][w2]&
+	    fullboard[w1+2][w2])== 2 ||
+	   (fullboard[w1][w2+1] & fullboard[w1+1][w2+1]&
+	    fullboard[w1+2][w2+1])== 2 ||
+	   (fullboard[w1][w2+2] & fullboard[w1+1][w2+2]&
+	    fullboard[w1+2][w2+2])== 2 ){
+	    return "p2";
+	}
     }
-
-    
+	
+	
+  
     //clear
     public void clearBoard(){
 	for (int c = 0; c < 9; c++){
@@ -35,6 +77,7 @@ public class TicTacToe extends JFrame implements ActionListener{
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	this.setResizable(false);
       	this.setBackground(Color.white);
+	addMouseListener(this);
 
 	pane = this.getContentPane();
        	pane.setLayout(new FlowLayout());
@@ -78,37 +121,18 @@ public class TicTacToe extends JFrame implements ActionListener{
 	
     }
     //clickable
-    public void mouseClicked(MouseEvent e){
-	int w = getWidth();
-	int h = getHeight();
-	currentCell = null;
-	for (int col = 0; col < 9 && currentCell == null; col++){
-	    for (int row = 0; row < 9; row++){
-		int x = (w/9) * col;
-		int y = (h/9) * row;
-		Rectangle cell = new Rectangle(x,y,w/9,h/9);
-		if (cell.contains(e.getPoint())){
-		    System.out.println("in");
-		    currentCell = cell;
-		    repaint();
-		    break;
-		}
-	    }
-	}
+    // return clicked mouse AND x/100 * 100 && y/100 * 100
+    // draw the x or o on that and set x/100,y/100 coordinate of the array to 1 or 2 
+    public void mousePressed(MouseEvent e, Graphics g){
+	int x = getX();
+	int y = getY();
+	fullboard[x/100 * 100][x/100 * 100] = 1;
+      	g.drawLine(x/100 * 100,y/100 * 100,x/100 * 100 + 900/9, y/100 * 100 + 700/9);
     }
-    //paint
-    public void paintComponent(Graphics g){
-	//	super.paintComponent(g);
-	int w = getWidth();
-	int h = getHeight();
-	Graphics2D g2d = (Graphics2D) g;
+	
+    
+    // actions
 
-	if(currentCell != null){
-	    g2d.setColor(Color.black);
-	    g2d.fill(currentCell);
-	}
-    }
-    // actions 
     public void actionPerformed(ActionEvent e){
 	String s = e.getActionCommand();
 	System.out.println(s);
