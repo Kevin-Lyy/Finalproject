@@ -1,0 +1,8 @@
+*.java#
+*.class
+*.java~
+/*.java#
+/*.class
+/*.java~
+.metadata
+.project
