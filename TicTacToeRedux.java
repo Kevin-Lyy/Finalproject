@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class TicTacToeRedux{
-  boolean ifWin,turn;
+  boolean turn;
   int[][] lrgBoard = new int[3][3];
   int[][] b1,b2,b3,b4,b5,b6,b7,b8,b9 = new int[3][3];
   int[][] nextBoard;
@@ -63,21 +63,32 @@ public class TicTacToeRedux{
     if(x == 1 && y == 2) nextBoard = b8;
     if(x == 2 && y == 2) nextBoard = b8;
   }
-  public int getXInt(int[][] board){
 
+  public void checkLargeBoard(){
+    if(checkBoard(b1) == 1) lrgBoard[0][0] = 1;
+    else if (checkBoard(b1) == 2) lrgBoard[0][0] = 2;
+    if(checkBoard(b2) == 1) lrgBoard[0][1] = 1;
+    else if (checkBoard(b1) == 2) lrgBoard[0][1] = 2;
+    if(checkBoard(b3) == 1) lrgBoard[0][2] = 1;
+    else if (checkBoard(b1) == 2) lrgBoard[0][2] = 2;
+    if(checkBoard(b4) == 1) lrgBoard[1][0] = 1;
+    else if (checkBoard(b1) == 2) lrgBoard[1][0] = 2;
+    if(checkBoard(b5) == 1) lrgBoard[1][1] = 1;
+    else if (checkBoard(b1) == 2) lrgBoard[1][1] = 2;
+    if(checkBoard(b6) == 1) lrgBoard[1][2] = 1;
+    else if (checkBoard(b1) == 2) lrgBoard[1][2] = 2;
+    if(checkBoard(b7) == 1) lrgBoard[2][0] = 1;
+    else if (checkBoard(b1) == 2) lrgBoard[2][0] = 2;
+    if(checkBoard(b8) == 1) lrgBoard[2][1] = 1;
+    else if (checkBoard(b1) == 2) lrgBoard[2][1] = 2;
+    if(checkBoard(b9) == 1) lrgBoard[2][2] = 1;
+    else if (checkBoard(b1) == 2) lrgBoard[2][2] = 2;
   }
-  public int getYInt(int[][] board){
-
-  }
-
-
 
   public void play(int a, int b){
     if(turn) nextBoard[a][b] = 1;
     else nextBoard[a][b] = 2;
-    if(checkBoard(nextBoard) == 1) lrgBoard[][] = 1;
-    else if(checkBoard(nextBoard) == 2) lrgBoard[][] = 2;
-    
+    checkLargeBoard();
     if(checkBoard(lrgBoard) == 1) System.out.println("the winner is player 1");
     else if (checkBoard(lrgBoard) == 2)System.out.println("the winner is player 2");
     turn = !turn;
