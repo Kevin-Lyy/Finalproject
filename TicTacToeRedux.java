@@ -12,10 +12,25 @@ public class TicTacToeRedux{
     nextBoard = b5;
   }
 
-  public String toString(int[][] board){
-    return "";
+  public String toStringLarge(int[][] lrgboard){
+    String sumString = "";
+    sumString += toString(b1) + toString(b2) + toString(b3) + "\n";
+    sumString += toString(b4) + toString(b5) + toString(b6) + "\n";
+    sumString += toString(b7) + toString(b8) + toString(b9) + "\n";
+    sumString += toString(lrgboard) + "status";
+    return sumString;
   }
-//aa
+
+  public String toString(int[][] smlboard){
+    String reString = "";
+    for(int c = 0; c < 3;c++){
+      for(int i = 0; i < 3;i++){
+        reString += smlboard[c][i] + "\n";
+      }
+    }
+    return reString;
+  }
+
   public int checkBoard(int[][] board){
     if(board[0][0] == board[0][1] && board[0][1] == board[0][2]){
       if(board[0][0] == 1) return 1;
