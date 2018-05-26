@@ -1,20 +1,18 @@
-Final Project Ultimate Tic Tac Toe! REDUX 
+Final Project Ultimate Tic Tac Toe! REDUX 5/25/18
 Project idea 
-	Two player game of tic tac toe, in a game of tic tac toe
-	
-	Player one starts in the center of the board and places a O on board B5 
-	The next turn is based on where the first player places the O
-	X can only be placed on the board based on where the first one was placed and so on
+Two player game of tic tac toe, in a game of tic tac toe	
+Player one starts in the center of the board and places a O on board B5 
+The next turn is based on where the first player places the O
+X can only be placed on the board based on where the first one was placed and so on
 
 Critical features 
-	Start the first move in the center 
+Start the first move in the center 
 Checks where the last X or O was placed before determining where it will be placed in
 the bigger board 
 Checks what was placed last to determine what will be placed 
 Spot cannot be overridden 
-Button - clear board 
+ 
 Each board has 8 ways to win 
-A-I and S
 123
 456
 789
@@ -23,26 +21,23 @@ A-I and S
 369
 159
 357
-	In the code
-		Blank 0: - (in array: 0)
+In the code
+Blank 0: - (in array: 0)
 Player 1: O (in array: 1)
 Player 2: X (in array: 2)
-3 by 3 arrays within a 3 by 3 array 
+3 by 3 arrays  
 Labels 
-A-I (big board)
-S 1-9 (within the B) 
-
+lrgBoard (big board)
+b1-b9 
 To be added later features 
-	Basic AI to play against 
-Dumb- random place  
-Smart- tries to win on any given board 
+
 Development stages 
-	Begin with basic tic tac toe, start with how to code for that
-		Take turns with X and O 
-		Check for winner 
-		No overriding 
-	Continue with larger board 
-		Force next placement based on the previous one
+Begin with basic tic tac toe, start with how to code for that
+Take turns with X and O 
+Check for winner 
+No overriding 
+Continue with larger board 
+Force next placement based on the previous one
 Check for winner on the larger board 
-Clear all button 
+
 
