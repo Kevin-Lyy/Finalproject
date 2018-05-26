@@ -2,8 +2,8 @@ import java.util.*;
 
 public class TicTacToeRedux{
   boolean turn;
-  int[][] lrgBoard = new int[3][3];
-  int[][] b1,b2,b3,b4,b5,b6,b7,b8,b9 = new int[3][3];
+  static int[][] lrgBoard = new int[3][3];
+  static int[][] b1,b2,b3,b4,b5,b6,b7,b8,b9 = new int[3][3];
   int[][] nextBoard;
   int winner;
 
@@ -12,7 +12,7 @@ public class TicTacToeRedux{
     nextBoard = b5;
   }
 
-  public String toStringLarge(int[][] lrgboard){
+  public static String toStringLarge(int[][] lrgboard){
     String sumString = "";
     sumString += toString(b1) + toString(b2) + toString(b3) + "\n";
     sumString += toString(b4) + toString(b5) + toString(b6) + "\n";
@@ -21,12 +21,15 @@ public class TicTacToeRedux{
     return sumString;
   }
 
-  public String toString(int[][] smlboard){
+  public static String toString(int[][] smlboard){
     String reString = "";
     for(int c = 0; c < 3;c++){
       for(int i = 0; i < 3;i++){
-        reString += smlboard[c][i] + "\n";
+        if(smlboard[c][i] == 0) reString += "-";
+        if(smlboard[c][i] == 1) reString += "O";
+        if(smlboard[c][i] == 2) reString += "X";
       }
+      reString += "\n";
     }
     return reString;
   }
@@ -101,12 +104,30 @@ public class TicTacToeRedux{
   }
 
   public void play(int a, int b){
-    if(turn) nextBoard[a][b] = 1;
-    else nextBoard[a][b] = 2;
+    if(turn && checkBoard(nextBoard) == 0) nextBoard[a][b] = 1;
+    else if(checkBoard(nextBoard) == 0) nextBoard[a][b] = 2;
+    if(checkBoard(nextBoard) != 0 && turn){
+      getNextTurn((int) Math.random() *3,(int) Math.random() *3);
+      nextBoard[a][b] = 1;
+    }
+    else if(checkBoard(nextBoard) != 0 && !turn){
+      getNextTurn((int) Math.random() *3,(int) Math.random() *3);
+      nextBoard[a][b] = 2;
+    }
     checkLargeBoard();
     if(checkBoard(lrgBoard) == 1) System.out.println("the winner is player 1");
     else if (checkBoard(lrgBoard) == 2)System.out.println("the winner is player 2");
     turn = !turn;
     getNextTurn(a,b);
+  }
+  public static void main(String argsp[]){
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("WELCOME TO ULTIMATE TICTACTOE");
+    System.out.println(toString(lrgBoard));
+    System.out.println("O goes first, input your place");
+    System.out.print("input: ");
+    int x = scanner.nextInt();
+    int y = scanner.nextInt();
+    System.out.println(x + " " + y);
   }
 }
