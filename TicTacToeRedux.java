@@ -3,7 +3,15 @@ import java.util.*;
 public class TicTacToeRedux{
   boolean turn;
   static int[][] lrgBoard = new int[3][3];
-  static int[][] b1,b2,b3,b4,b5,b6,b7,b8,b9 = new int[3][3];
+  static int[][] b1  = new int[3][3];
+  static int[][] b2  = new int[3][3];
+  static int[][] b3  = new int[3][3];
+  static int[][] b4  = new int[3][3];
+  static int[][] b5  = new int[3][3];
+  static int[][] b6  = new int[3][3];
+  static int[][] b7  = new int[3][3];
+  static int[][] b8  = new int[3][3];
+  static int[][] b9  = new int[3][3];
   int[][] nextBoard;
   int winner;
 
@@ -14,11 +22,46 @@ public class TicTacToeRedux{
 
   public static String toStringLarge(int[][] lrgboard){
     String sumString = "";
-    sumString += toString(b1) + toString(b2) + toString(b3) + "\n";
-    sumString += toString(b4) + toString(b5) + toString(b6) + "\n";
-    sumString += toString(b7) + toString(b8) + toString(b9) + "\n";
-    sumString += toString(lrgboard) + "status";
+    sumString += toStringTop(b1)+ "  " + toStringTop(b2) + "  " + toStringTop(b3) + "\n";
+    sumString += toStringMid(b1)+ "  " + toStringMid(b2) + "  " + toStringMid(b3) + "\n";
+    sumString += toStringBot(b1)+ "  " + toStringBot(b2) + "  " + toStringBot(b3) + "\n";
+    sumString += "\n";
+    sumString += toStringTop(b4)+ "  " + toStringTop(b5) + "  " + toStringTop(b6) + "\n";
+    sumString += toStringMid(b4)+ "  " + toStringMid(b5) + "  " + toStringMid(b6) + "\n";
+    sumString += toStringBot(b4)+ "  " + toStringBot(b5) + "  " + toStringBot(b6) + "\n";
+    sumString += "\n";
+    sumString += toStringTop(b7)+ "  " + toStringTop(b8) + "  " + toStringTop(b9) + "\n";
+    sumString += toStringMid(b7)+ "  " + toStringMid(b8) + "  " + toStringMid(b9) + "\n";
+    sumString += toStringBot(b7)+ "  " + toStringBot(b8) + "  " + toStringBot(b9) + "\n";
+    sumString += "\n" +"STATUS" + "\n" + toString(lrgboard);
     return sumString;
+  }
+  public static String toStringTop(int[][] b){
+    String reString = "";
+    for(int c = 0; c < 3;c++){
+      if(b[0][c] == 0) reString += "-";
+      if(b[0][c] == 1) reString += "O";
+      if(b[0][c] == 2) reString += "X";
+    }
+    return reString;
+  }
+  public static String toStringMid(int[][] b){
+    String reString = "";
+    for(int c = 0; c < 3;c++){
+      if(b[1][c] == 0) reString += "-";
+      if(b[1][c] == 1) reString += "O";
+      if(b[1][c] == 2) reString += "X";
+    }
+    return reString;
+  }
+  public static String toStringBot(int[][] b){
+    String reString = "";
+    for(int c = 0; c < 3;c++){
+      if(b[2][c] == 0) reString += "-";
+      if(b[2][c] == 1) reString += "O";
+      if(b[2][c] == 2) reString += "X";
+    }
+    return reString;
   }
 
   public static String toString(int[][] smlboard){
@@ -29,7 +72,7 @@ public class TicTacToeRedux{
         if(smlboard[c][i] == 1) reString += "O";
         if(smlboard[c][i] == 2) reString += "X";
       }
-      reString += "\n";
+      if(c<2)reString += "\n";
     }
     return reString;
   }
@@ -123,11 +166,11 @@ public class TicTacToeRedux{
   public static void main(String argsp[]){
     Scanner scanner = new Scanner(System.in);
     System.out.println("WELCOME TO ULTIMATE TICTACTOE");
-    System.out.println(toString(lrgBoard));
+    System.out.println(toStringLarge(lrgBoard));
     System.out.println("O goes first, input your place");
-    System.out.print("input: ");
-    int x = scanner.nextInt();
-    int y = scanner.nextInt();
-    System.out.println(x + " " + y);
+    //System.out.println("input: ");
+  //  int x = scanner.nextInt();
+  //  int y = scanner.nextInt();
+  //  System.out.println(x + " " + y);
   }
 }
