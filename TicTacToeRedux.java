@@ -25,7 +25,7 @@ public class TicTacToeRedux{
     sumString += "\n";
     sumString += toStringLin(b4,0)+ "  " + toStringLin(b5,0) + "  " + toStringLin(b6,0) + "\n";
     sumString += toStringLin(b4,1)+ "  " + toStringLin(b5,1) + "  " + toStringLin(b6,1) + "\n";
-    sumString += toStringLin(b4,2)+ "  " + toStringLin(b5,0) + "  " + toStringLin(b6,2) + "\n";
+    sumString += toStringLin(b4,2)+ "  " + toStringLin(b5,2) + "  " + toStringLin(b6,2) + "\n";
     sumString += "\n";
     sumString += toStringLin(b7,0)+ "  " + toStringLin(b8,0) + "  " + toStringLin(b9,0) + "\n";
     sumString += toStringLin(b7,1)+ "  " + toStringLin(b8,1) + "  " + toStringLin(b9,1) + "\n";
@@ -130,6 +130,7 @@ public class TicTacToeRedux{
     if(nextBoard[a][b] != 0) return ;
     if(turn && checkBoard(nextBoard) == 0) nextBoard[a][b] = 1;
     else if(checkBoard(nextBoard) == 0) nextBoard[a][b] = 2;
+
     if(checkBoard(nextBoard) != 0 && turn){
       getNextTurn((int) Math.random() *3,(int) Math.random() *3);
       nextBoard[a][b] = 1;
@@ -138,6 +139,7 @@ public class TicTacToeRedux{
       getNextTurn((int) Math.random() *3,(int) Math.random() *3);
       nextBoard[a][b] = 2;
     }
+
     checkLargeBoard();
     turn = !turn;
     getNextTurn(a,b);
@@ -159,7 +161,7 @@ public class TicTacToeRedux{
       try{
         j = scanner.nextInt();
         k = scanner.nextInt();
-        if(!(j >= 0 && k >= 0 && j <= 2&& k <= 2)){
+        if(j < 0 || k < 0 || j > 2 || k > 2){
           System.out.println("invalid input");
           continue;
         }
@@ -167,8 +169,7 @@ public class TicTacToeRedux{
 				System.out.println("no");
 				continue;
       }
-      play(j,k);
-
+      play(k,j);
       System.out.println(toStringLarge(lrgBoard));
     }
 
