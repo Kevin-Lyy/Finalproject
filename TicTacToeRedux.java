@@ -19,22 +19,22 @@ public class TicTacToeRedux{
 
   public static String toStringLarge(int[][] lrgboard){
     String sumString = "";
-    sumString += toStringLin(b1,0)+ "  " + toStringLin(b2,0) + "  " + toStringLin(b3,0) + "\n";
-    sumString += toStringLin(b1,1)+ "  " + toStringLin(b2,1) + "  " + toStringLin(b3,1) + "\n";
-    sumString += toStringLin(b1,2)+ "  " + toStringLin(b2,2) + "  " + toStringLin(b3,2) + "\n";
+    sumString += toStringLine(b1,0)+ "  " + toStringLine(b2,0) + "  " + toStringLine(b3,0) + "\n";
+    sumString += toStringLine(b1,1)+ "  " + toStringLine(b2,1) + "  " + toStringLine(b3,1) + "\n";
+    sumString += toStringLine(b1,2)+ "  " + toStringLine(b2,2) + "  " + toStringLine(b3,2) + "\n";
     sumString += "\n";
-    sumString += toStringLin(b4,0)+ "  " + toStringLin(b5,0) + "  " + toStringLin(b6,0) + "\n";
-    sumString += toStringLin(b4,1)+ "  " + toStringLin(b5,1) + "  " + toStringLin(b6,1) + "\n";
-    sumString += toStringLin(b4,2)+ "  " + toStringLin(b5,2) + "  " + toStringLin(b6,2) + "\n";
+    sumString += toStringLine(b4,0)+ "  " + toStringLine(b5,0) + "  " + toStringLine(b6,0) + "\n";
+    sumString += toStringLine(b4,1)+ "  " + toStringLine(b5,1) + "  " + toStringLine(b6,1) + "\n";
+    sumString += toStringLine(b4,2)+ "  " + toStringLine(b5,2) + "  " + toStringLine(b6,2) + "\n";
     sumString += "\n";
-    sumString += toStringLin(b7,0)+ "  " + toStringLin(b8,0) + "  " + toStringLin(b9,0) + "\n";
-    sumString += toStringLin(b7,1)+ "  " + toStringLin(b8,1) + "  " + toStringLin(b9,1) + "\n";
-    sumString += toStringLin(b7,2)+ "  " + toStringLin(b8,2) + "  " + toStringLin(b9,2) + "\n";
+    sumString += toStringLine(b7,0)+ "  " + toStringLine(b8,0) + "  " + toStringLine(b9,0) + "\n";
+    sumString += toStringLine(b7,1)+ "  " + toStringLine(b8,1) + "  " + toStringLine(b9,1) + "\n";
+    sumString += toStringLine(b7,2)+ "  " + toStringLine(b8,2) + "  " + toStringLine(b9,2) + "\n";
     sumString += "\n" +"STATUS" + "\n" + toString(lrgboard);
     return sumString;
   }
 
-  public static String toStringLin(int[][] b, int i){
+  public static String toStringLine(int[][] b, int i){
     String reString = "";
     for(int c = 0; c < 3;c++){
       if(b[i][c] == 0) reString += " - ";
@@ -57,7 +57,7 @@ public class TicTacToeRedux{
     return reString;
   }
 
-  public static int checkBoard(int[][] board){
+  public static int checkBoard2(int[][] board){
     if(board[0][0] == board[0][1] && board[0][1] == board[0][2] && board[0][0] == board[0][2]){
       if(board[0][0] == 1) return 1;
       else if(board[0][0] == 2) return 2;
@@ -92,6 +92,33 @@ public class TicTacToeRedux{
     }
     return 0;
   }
+  public static int checkBoard(int[][] board){
+    if(board[0][0] == board[0][1] && board[0][1] == board[0][2] && board[0][0] == board[0][2] && board[0][0] == 1) return 1;
+    if(board[0][0] == board[0][1] && board[0][1] == board[0][2] && board[0][0] == board[0][2] && board[0][0] == 2) return 2;
+
+    if(board[0][0] == board[1][0] && board[1][0] == board[2][0] && board[0][0] == board[2][0] && board[0][0] == 1) return 1;
+    if(board[0][0] == board[1][0] && board[1][0] == board[2][0] && board[0][0] == board[2][0] && board[0][0] == 2) return 2;
+
+    if(board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] == board[2][2] && board[0][0] == 1) return 1;
+    if(board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] == board[2][2] && board[0][0] == 2) return 2;
+
+    if(board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] == board[2][0] && board[0][2] == 1) return 1;
+    if(board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] == board[2][0] && board[0][2] == 2) return 2;
+
+    if(board[0][2] == board[1][2] && board[1][2] == board[2][2] && board[0][2] == board[1][2] && board[0][2] == 1) return 1;
+    if(board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] == board[2][0] && board[0][2] == 2) return 2;
+
+    if(board[1][0] == board[1][1] && board[1][1] == board[1][2] && board[1][0] == board[1][2] && board[1][0] == 1) return 1;
+    if(board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] == board[2][0] && board[1][0] == 2) return 2;
+
+    if(board[2][0] == board[2][1] && board[2][1] == board[2][2] && board[2][0] == board[2][2] && board[2][0] == 1) return 1;
+    if(board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] == board[2][0] && board[2][0] == 2) return 2;
+
+    if(board[0][1] == board[1][1] && board[1][1] == board[2][1] && board[1][1] == board[2][1] && board[0][1] == 1) return 1;
+    if(board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] == board[2][0] && board[0][0] == 2) return 2;
+
+    return 0;
+  }
 
   public static void getNextTurn(int x, int y){
     if(x == 0 && y == 0) nextBoard = b1;
@@ -105,7 +132,7 @@ public class TicTacToeRedux{
     if(x == 2 && y == 2) nextBoard = b9;
   }
 
-  public static void checkLargeBoard(){
+  public static void setLargeBoard(){
     if(checkBoard(b1) == 1) lrgBoard[0][0] = 1;
     else if (checkBoard(b1) == 2) lrgBoard[0][0] = 2;
     if(checkBoard(b2) == 1) lrgBoard[0][1] = 1;
@@ -140,7 +167,7 @@ public class TicTacToeRedux{
       return ;
     }
 */
-    checkLargeBoard();
+    setLargeBoard();
     turn = !turn;
     getNextTurn(b,a);
   }
@@ -171,6 +198,15 @@ public class TicTacToeRedux{
       }
       play(k,j);
       System.out.println(toStringLarge(lrgBoard));
+      System.out.println("b1 " + checkBoard(b1));
+      System.out.println("b2 " + checkBoard(b2));
+      System.out.println("b3 " + checkBoard(b3));
+      System.out.println("b4 " + checkBoard(b4));
+      System.out.println("b5 " + checkBoard(b5));
+      System.out.println("b6 " + checkBoard(b6));
+      System.out.println("b7 " + checkBoard(b7));
+      System.out.println("b8 " + checkBoard(b8));
+      System.out.println("b9 " + checkBoard(b9));
     }
 
     if(checkBoard(lrgBoard) == 1) System.out.println("the winner is player 1");
