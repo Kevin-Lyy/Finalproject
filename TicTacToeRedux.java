@@ -37,9 +37,9 @@ public class TicTacToeRedux{
   public static String toStringLin(int[][] b, int i){
     String reString = "";
     for(int c = 0; c < 3;c++){
-      if(b[i][c] == 0) reString += "-";
-      if(b[i][c] == 1) reString += "O";
-      if(b[i][c] == 2) reString += "X";
+      if(b[i][c] == 0) reString += " - ";
+      if(b[i][c] == 1) reString += " O ";
+      if(b[i][c] == 2) reString += " X ";
     }
     return reString;
   }
@@ -48,9 +48,9 @@ public class TicTacToeRedux{
     String reString = "";
     for(int c = 0; c < 3;c++){
       for(int i = 0; i < 3;i++){
-        if(smlboard[c][i] == 0) reString += "-";
-        if(smlboard[c][i] == 1) reString += "O";
-        if(smlboard[c][i] == 2) reString += "X";
+        if(smlboard[c][i] == 0) reString += " - ";
+        if(smlboard[c][i] == 1) reString += " O ";
+        if(smlboard[c][i] == 2) reString += " X ";
       }
       if(c<2)reString += "\n";
     }
@@ -58,35 +58,35 @@ public class TicTacToeRedux{
   }
 
   public static int checkBoard(int[][] board){
-    if(board[0][0] == board[0][1] && board[0][1] == board[0][2]){
+    if(board[0][0] == board[0][1] && board[0][1] == board[0][2] && board[0][0] == board[0][2]){
       if(board[0][0] == 1) return 1;
       else if(board[0][0] == 2) return 2;
     }
-    if(board[0][0] == board[1][0] && board[1][0] == board[2][0]){
+    if(board[0][0] == board[1][0] && board[1][0] == board[2][0] && board[0][0] == board[2][0]){
       if(board[0][0] == 1) return 1;
       else if(board[0][0] == 2) return 2;
     }
-    if(board[0][0] == board[1][1] && board[1][1] == board[2][2]){
+    if(board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] == board[2][2]){
       if(board[0][0] == 1) return 1;
       else if(board[0][0] == 2) return 2;
     }
-    if(board[0][2] == board[1][1] && board[1][1] == board[2][0]){
+    if(board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] == board[2][0]){
       if(board[0][2] == 1) return 1;
       else if(board[0][0] == 2) return 2;
     }
-    if(board[0][2] == board[1][2] && board[1][2] == board[2][2]){
+    if(board[0][2] == board[1][2] && board[1][2] == board[2][2] && board[0][2] == board[1][2]){
       if(board[0][2] == 1) return 1;
       else if(board[0][0] == 2) return 2;
     }
-    if(board[1][0] == board[1][1] && board[1][1] == board[1][2]){
+    if(board[1][0] == board[1][1] && board[1][1] == board[1][2] && board[1][0] == board[1][2]){
       if(board[1][0] == 1) return 1;
       else if(board[0][0] == 2) return 2;
     }
-    if(board[2][0] == board[2][1] && board[2][1] == board[2][2]){
+    if(board[2][0] == board[2][1] && board[2][1] == board[2][2] && board[2][0] == board[2][2]){
       if(board[2][0] == 1) return 1;
       else if(board[0][0] == 2) return 2;
     }
-    if(board[0][1] == board[1][1] && board[1][1] == board[2][1]){
+    if(board[0][1] == board[1][1] && board[1][1] == board[2][1] && board[1][1] == board[2][1]){
       if(board[0][0] == 1) return 1;
       else if(board[0][0] == 2) return 2;
     }
@@ -102,7 +102,7 @@ public class TicTacToeRedux{
     if(x == 2 && y == 1) nextBoard = b6;
     if(x == 0 && y == 2) nextBoard = b7;
     if(x == 1 && y == 2) nextBoard = b8;
-    if(x == 2 && y == 2) nextBoard = b8;
+    if(x == 2 && y == 2) nextBoard = b9;
   }
 
   public static void checkLargeBoard(){
@@ -128,21 +128,21 @@ public class TicTacToeRedux{
 
   public static void play(int a, int b){
     if(nextBoard[a][b] != 0) return ;
-    if(turn && checkBoard(nextBoard) == 0) nextBoard[a][b] = 1;
-    else if(checkBoard(nextBoard) == 0) nextBoard[a][b] = 2;
-
-    if(checkBoard(nextBoard) != 0 && turn){
+    if(turn) nextBoard[a][b] = 1;
+    else nextBoard[a][b] = 2;
+/*
+    if(checkBoard(nextBoard) == 1 || checkBoard(nextBoard) == 2 && turn){
       getNextTurn((int) Math.random() *3,(int) Math.random() *3);
-      nextBoard[a][b] = 1;
+      return ;
     }
-    else if(checkBoard(nextBoard) != 0 && !turn){
+    else if(checkBoard(nextBoard) == 1 || checkBoard(nextBoard) == 2 && !turn){
       getNextTurn((int) Math.random() *3,(int) Math.random() *3);
-      nextBoard[a][b] = 2;
+      return ;
     }
-
+*/
     checkLargeBoard();
     turn = !turn;
-    getNextTurn(a,b);
+    getNextTurn(b,a);
   }
 
   public static void main(String argsp[]){
