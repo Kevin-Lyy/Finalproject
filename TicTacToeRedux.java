@@ -131,19 +131,9 @@ public class TicTacToeRedux{
   }
 
   public static void play(int a, int b){
-    if(nextBoard[a][b] != 0) return ;
+    if(nextBoard[a][b] != 0 || checkBoard(nextBoard) != 0) return ;
     if(turn) nextBoard[a][b] = 1;
     else nextBoard[a][b] = 2;
-/*
-    if(checkBoard(nextBoard) == 1 || checkBoard(nextBoard) == 2 && turn){
-      getNextTurn((int) Math.random() *3,(int) Math.random() *3);
-      return ;
-    }
-    else if(checkBoard(nextBoard) == 1 || checkBoard(nextBoard) == 2 && !turn){
-      getNextTurn((int) Math.random() *3,(int) Math.random() *3);
-      return ;
-    }
-*/
     setLargeBoard();
     turn = !turn;
     getNextTurn(b,a);
