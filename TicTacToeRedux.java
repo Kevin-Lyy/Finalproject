@@ -131,7 +131,8 @@ public class TicTacToeRedux{
   }
 
   public static void play(int a, int b){
-    if(nextBoard[a][b] != 0 || checkBoard(nextBoard) != 0) return ;
+    if(nextBoard[a][b] != 0) return ;
+    if(checkBoard(nextBoard) != 0)getNextTurn((int)Math.random() *3,(int)Math.random() *3);
     if(turn) nextBoard[a][b] = 1;
     else nextBoard[a][b] = 2;
     setLargeBoard();
@@ -139,7 +140,7 @@ public class TicTacToeRedux{
     getNextTurn(b,a);
   }
 
-  public static void main(String argsp[]){
+  public static void main(String args[]){
     Scanner scanner = new Scanner(System.in);
     System.out.println("\n");
     System.out.println("WELCOME TO ULTIMATE TICTACTOE");
@@ -153,10 +154,10 @@ public class TicTacToeRedux{
       System.out.println("input: ");
       int j;
       int k;
-      String playernames;
+      String gameNum;
 
       try{
-        playernames = scanner.nextLine();
+        gameNum = scanner.nextLine();
 
         j = scanner.nextInt();
         k = scanner.nextInt();
@@ -169,7 +170,6 @@ public class TicTacToeRedux{
 				continue;
       }
       play(k,j);
-
       System.out.println(toStringLarge(lrgBoard));
       System.out.println(printNextTurn(j,k));
       /*
@@ -183,8 +183,15 @@ public class TicTacToeRedux{
       System.out.println("b8 " + checkBoard(b8));
       System.out.println("b9 " + checkBoard(b9));
       */
-      if(checkBoard(lrgBoard) == 1) System.out.println("the winner is player1" );
-      else if(checkBoard(lrgBoard) == 2)System.out.println("the winner is player2" );
+      if(checkBoard(lrgBoard) == 1) {
+      System.out.println("the winner is player1" );
+      System.out.println(gameNum);
+    }
+      else if(checkBoard(lrgBoard) == 2){
+      System.out.println("the winner is player2" );
+      System.out.println(gameNum);
+    }
+
     }
   }
 }

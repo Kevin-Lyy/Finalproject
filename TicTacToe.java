@@ -63,7 +63,7 @@ public class TicTacToe extends JFrame implements ActionListener,MouseListener{
 	}
 	return "p0";
     }
-	
+
     //clear
     public void clearBoard(){
 	for (int c = 0; c < 9; c++){
@@ -82,7 +82,7 @@ public class TicTacToe extends JFrame implements ActionListener,MouseListener{
 	this.setResizable(false);
       	this.setBackground(Color.white);
 	points = new ArrayList<Point>();
-	
+
 	//create board
 	fullboard = new char[9][9];
 	for (int c = 0; c < 9; c++){
@@ -95,8 +95,8 @@ public class TicTacToe extends JFrame implements ActionListener,MouseListener{
 	    for (int i = 0;i < 9; i++){
 		bigBoard[c][i] = 0;
 	    }
-	}       
-	
+	}
+
 	pane = this.getContentPane();
        	pane.setLayout(new FlowLayout());
 
@@ -116,14 +116,14 @@ public class TicTacToe extends JFrame implements ActionListener,MouseListener{
 	int y = getY();
 	int inbx = x/100;
 	int inby = y/100;
-	//check the placement of the last piece 
+	//check the placement of the last piece
 	fullboard[inbx][inby] = 1;
 	points.add(new Point(x,y));
 	repaint();
-	
 
-	//check winner of the larger board 
-	
+
+	//check winner of the larger board
+
 	if(inbx < 3 & inby < 3){
 	    if (checkWinner(0,0).equals("p1")){
 		    bigBoard[0][0] = 1;
@@ -131,7 +131,7 @@ public class TicTacToe extends JFrame implements ActionListener,MouseListener{
 	    else if(checkWinner(0,0).equals("p2")){
 		    bigBoard[0][0] = 2;
 		}
-	}	
+	}
 	if(inbx < 6  & inby < 3){
 	    if (checkWinner(3,0).equals("p1")){
 		    bigBoard[1][0] = 1;
@@ -146,7 +146,7 @@ public class TicTacToe extends JFrame implements ActionListener,MouseListener{
 		}
 	    else if(checkWinner(6,0).equals("p2")){
 		    bigBoard[2][0] = 2;
-		}	    
+		}
 	}
 	if(inbx < 3 & inby < 6){
 	    if (checkWinner(0,3).equals("p1")){
@@ -154,24 +154,24 @@ public class TicTacToe extends JFrame implements ActionListener,MouseListener{
 		}
 	    else if(checkWinner(0,3).equals("p2")){
 		    bigBoard[0][1] = 2;
-		}	    
-	}     
+		}
+	}
 	if(inbx < 3 & inby < 6){
 	    if (checkWinner(3,3).equals("p1")){
 		    bigBoard[1][1] = 1;
 		}
 	    else if(checkWinner(3,3).equals("p2")){
 		    bigBoard[1][1] = 2;
-		}	    
+		}
 	}
-	
+
 	if(inby < 6){
 	    if (checkWinner(6,3).equals("p1")){
 		    bigBoard[2][1] = 1;
 		}
 	    else if(checkWinner(6,3).equals("p2")){
 		    bigBoard[2][1] = 1;
-		}	    
+		}
 	}
 	if(inbx < 3){
 	    if (checkWinner(0,6).equals("p1")){
@@ -179,7 +179,7 @@ public class TicTacToe extends JFrame implements ActionListener,MouseListener{
 		}
 	    else if(checkWinner(0,6).equals("p2")){
 		    bigBoard[0][2] = 2;
-		}	    
+		}
 	}
 	if(inbx < 6 & inby < 9){
 	    if (checkWinner(3,6).equals("p1")){
@@ -187,9 +187,9 @@ public class TicTacToe extends JFrame implements ActionListener,MouseListener{
 		}
 	    else if(checkWinner(3,6).equals("p2")){
 		    bigBoard[1][2] = 2;
-		}	    
+		}
 	}
-	
+
 	if(inby < 9){
 	    if (checkWinner(6,6).equals("p1")){
 		    bigBoard[2][2] = 1;
@@ -198,7 +198,7 @@ public class TicTacToe extends JFrame implements ActionListener,MouseListener{
 		    bigBoard[2][2] = 2;
 		}
 	}
-    
+
     }
 
     public void paintComponent(Graphics g){
@@ -213,7 +213,7 @@ public class TicTacToe extends JFrame implements ActionListener,MouseListener{
 
 
 
-	
+
     public void paint(Graphics g){
 	//board 1-3
 	g.drawLine(0,900/9,900,900/9);
@@ -237,12 +237,12 @@ public class TicTacToe extends JFrame implements ActionListener,MouseListener{
 	g.drawLine(0,1800/3,900,1800/3);
 	g.drawLine(300,0,300,900);
 	g.drawLine(600,0,600,900);
-	
+
     }
     //clickable
     // return clicked mouse AND x/100 * 100 && y/100 * 100
     // draw the x or o on that and set x/100,y/100 coordinate of the array to 1 or 2
-    
+
 
     // actions
     public void actionPerformed(ActionEvent e){
