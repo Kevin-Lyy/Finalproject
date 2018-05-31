@@ -166,8 +166,8 @@ public class TicTacToeRedux{
           continue;
         }
       }catch (InputMismatchException e) {
-				System.out.println("number please");
-				continue;
+        System.out.println("number please");
+        continue;
       }
       play(k,j);
       System.out.println(toStringLarge(lrgBoard));
@@ -184,13 +184,13 @@ public class TicTacToeRedux{
       System.out.println("b9 " + checkBoard(b9));
       */
       if(checkBoard(lrgBoard) == 1) {
-      System.out.println("the winner is player1" );
-      System.out.println(gameNum);
-    }
+        System.out.println("the winner is player1" );
+        System.out.println(gameNum);
+      }
       else if(checkBoard(lrgBoard) == 2){
-      System.out.println("the winner is player2" );
-      System.out.println(gameNum);
-    }
+        System.out.println("the winner is player2" );
+        System.out.println(gameNum);
+      }
 
     }
   }
